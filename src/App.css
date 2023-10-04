@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+
+/* .active{
+  color:green
+} */
+
+ /* div p{
+  color:green
+};  */
+/* div > p{
+  color:pink
+};  */
+ /* div + p{
+  color:red
+}; */
+ /* div ~ p{
+  color:yellow
+};   */
+
+/* th:nth-child(2n+1) {
+  color:green
+} */
+/* tr:nth-child(2n+2){
+  color:red
+} */
+
+/* div {
+  & p{
+    color : green;
+  }
+  & h1{
+    color:red;
+  }
+} */
