@@ -126,20 +126,3 @@ const App = () => {
 
 export default App;
 
-{
-  /* <BrowserRouter> */
-}
-{
-  /* <NavigationPractice /> */
-}
-// <Routes>
-//   <Route exact path="/" element={<NestedRoute />} />
-//   <Route exact path="/product/*"  element={<Accordion />} >
-{
-  /* <Route exact path=":id"  element={<Parent />}   />
-          <Route exact path="prem"  element={<Imagelider />}   /> */
-}
-//     </Route>
-
-//   </Routes>
-// </BrowserRouter>
