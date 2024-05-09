@@ -1,0 +1,40 @@
+ul {
+  list-style-type: none;
+  position: relative;
+}
+li {
+  display: inline-block;
+  margin-right: 10px; /* Add spacing between items if needed */
+}
+
+nav ul ul li {
+  display: block;
+  position: relative;
+  left: 39px;
+}
+
+.subnav-content {
+  display: none;
+  position: absolute;
+  width: 80;
+  color: aqua;
+}
+.subnav:hover > .subnav-content  {
+  display: block;
+
+  width: 80;
+  color: aqua;
+}
+
+.service1-subnav-content {
+  display: none;
+}
+.krishana-submenu-content{
+display: none;
+}
+.service-subnav:hover > .service1-subnav-content, .subnav-content{
+  display: block;
+}
+.krishana-submenu:hover > .krishana-submenu-content {
+  display: block;
+}

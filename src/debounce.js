@@ -11,9 +11,9 @@ const DebounceExample = () => {
       }, delay);
     };
   };
-  const getfunction = (ev) => {
-    console.log("hjioiuyuio", ev.target.value);
-  };
+  // const getfunction = (ev) => {
+  //   console.log("hjioiuyuio", ev.target.value);
+  // };
 
   const changeHandler = debounce(
     (e) => console.log("hey", e.target.value),

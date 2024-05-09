@@ -1,9 +1,9 @@
 import React from "react";
 
 const ThrottleExample = () => {
+  const throttle = (fun, delay) => {
+    //https://medium.com/nerd-for-tech/debouncing-throttling-in-javascript-d36ace200cea
 
-  const throttle = (fun, delay) => {  //https://medium.com/nerd-for-tech/debouncing-throttling-in-javascript-d36ace200cea
-   
     let flag = true;
     return () => {
       if (flag) {

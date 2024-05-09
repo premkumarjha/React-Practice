@@ -32,10 +32,5 @@ console.log(props)
     )
 };
 
-//const Prem=HOC(Blog);
-//export default Prem;
-
-
-//   OR 
 
 export default HOC(Blog);
