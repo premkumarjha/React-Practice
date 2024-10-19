@@ -5,36 +5,25 @@ const Test = () => {
   const [productData, setProductData] = useState([]);
   const [isLoading,setIsLoading]=useState(false);
 
+
+  /* CORs issue ko fix krne ka ye bhi ak tarika hai from front end side and 
+  
+  
+  //https://stackoverflow.com/questions/76384362/how-do-you-setup-an-api-proxy-in-the-cra-dev-server
+  
+  */
   const URL = "https://dummyjson.com/products";
 
   useEffect(() => {
     fetchProduct();
   }, []);
-/* 
 
-//
-display :none
-visility:hidden //check 
 
-const array='HareKrishan';
-//count of each char;
 
-const output=array.reduce((c,acc)=>{
-if(!acc[c]){
-    acc[c]=1
-return acc
-}else{
-
-}
-
-},{})
-
-{h:1,a:n,}
-*/
   const fetchProduct = async () => {
     try {
         setIsLoading(true)
-      const response = await axios.get(URL);
+      const response = await axios.get("/products");
       setProductData(response?.data);
       setIsLoading(false)
     } catch (err) {
@@ -42,25 +31,23 @@ return acc
     }
   };
 
-  //https://dummyjson.com/products  //
-  //fetch data and show in table
-//thunk, saga or..
-//flux , mobix
+  
   return (
     <>
-    {isLoading ? ' ' :''}
-      <table>
+    
+    {!isLoading && <table>
         <tr>
           <th>item1</th>
           <th>item2</th>
         </tr>
-        {productData.map((product) => (
+        {productData?.length && productData?.map((product) => (
           <tr>
-            <td>{product?.item1}</td>
-            <td>{product?.item2}</td>
+            <td>{product?.id}</td>
+            <td>{product?.id}</td>
           </tr>
-        ))}
-      </table>
+         ))} 
+      </table>}
+      
     </>
   );
 };

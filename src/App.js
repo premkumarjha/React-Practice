@@ -42,7 +42,7 @@ import ProductItem from "./productItem";
 import PageNotFound from "./pageNotFound";
 import Users from "./users";
 import MinMaxHeight from './minMaxHeight';
-
+import Test from "./test1";
 //dynamic import
 const LazyloadingAbout = React.lazy(() => import("./about"));
 const LazyloadingProduct = React.lazy(() => import("./product"));
@@ -58,18 +58,18 @@ const App = () => {
     padding: "10px",
     fontFamily: "Arial",
   };
-  const [isLoign, setIsLogin] = useState(false);
+  const [isLoign, setIsLogin] = useState(true);
 
   return (
     <div>
-      <MinMaxHeight />
+      {/* <MinMaxHeight /> */}
       {/* <StyledComponent /> */}
       {/* <NoteForm />  */}
       {/* <InterviewQuestion /> */}
       {/* <LoderTillPageWidth /> */}
       {/* <UserTable /> */}
       {/* <EventDelegation></EventDelegation> */}
-      {/* <Test></Test> */}
+     
       {/* <UsereducerPractice /> */}
       {/* <FormFieldFocus></FormFieldFocus> */}
       {/* <Suspense style={{color:'red'}} fallback={'Loading....'}> */}
@@ -88,13 +88,15 @@ const App = () => {
       {/* <LazyloadingPractice /> */}
       {/* </Suspense> */}
 
-      {/* <ScrollLazyLoadDropdown /> */}<MinMaxHeight />
+      {/* <ScrollLazyLoadDropdown /><MinMaxHeight /> */}
       <div style={{}}>{isLoign && <Header />}</div>
 
       <Routes>
         {/* {!isLoign && } */}
-    
+        
         <Route exact path="/" element={<Login />}></Route>
+        <Route exact path="/test" element={<Test />}></Route>
+        
         {/* {isLoign && <Route exact path="/" element={<Suspense><LazyloadingAbout /></Suspense>}></Route>} */}
         {/* <Suspense fallback="loading..............."> */}
           <Route exact path="about" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingAbout /></Suspense>} />
