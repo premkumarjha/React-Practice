@@ -12,10 +12,11 @@ import Boxmodal from "./boxmodal";
 import Imagelider from "./slider";
 import Accordion from "./accordion";
 import NestedRoute from "./nestedroutes";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link,useNavigate, Navigate,useLocation} from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 import PositionPractice from "./position";
 import LazyloadingPractice from "./lazyloading";
-import React, { lazy, Suspense, useState } from "react";
+import React, { lazy, Suspense, useState ,useEffect} from "react";
 import FordwardRefComponent from "./forwardRef";
 import NavigationPractice from "./navbar";
 import StyledComponent from "./styledcomponent";
@@ -41,8 +42,11 @@ import CartItem from "./cartItem";
 import ProductItem from "./productItem";
 import PageNotFound from "./pageNotFound";
 import Users from "./users";
+import UserList from "./userList";
+import PostList from "./postList";
 import MinMaxHeight from './minMaxHeight';
 import Test from "./test1";
+import CheckAuthCompo from "./checkAuth";
 //dynamic import
 const LazyloadingAbout = React.lazy(() => import("./about"));
 const LazyloadingProduct = React.lazy(() => import("./product"));
@@ -59,7 +63,36 @@ const App = () => {
     fontFamily: "Arial",
   };
   const [isLoign, setIsLogin] = useState(true);
+  const { status,posts,isLoading, error } = useSelector((state) => state.posts);
+  const navigate = useNavigate();
+  const location = useLocation();
+ 
+  // useEffect(() => {
+  //   // const checkStatus = async () => {
+  //     try {
+      
 
+        
+  //       if (status === 401) {
+  //         navigate('/login');  // Navigate to Home page if status is 200
+  //       } 
+  //     } catch (error) {
+  //       console.error('Error checking status:', error);
+  //     }
+  //  // };
+
+  //   //checkStatus();
+  //   // if(status==401){
+  //   //   navigate('/login');
+  //   // }
+
+  // }, [navigate]);
+  // window.onload = function() {
+  //   if (status === 200) {
+  //     return <Navigate to="/profile" replace />;
+  //   }
+    // Your logic here, like initializing a feature or fetching data
+  //};
   return (
     <div>
       {/* <MinMaxHeight /> */}
@@ -92,35 +125,56 @@ const App = () => {
       <div style={{}}>{isLoign && <Header />}</div>
 
       <Routes>
-        {/* {!isLoign && } */}
-        
-        <Route exact path="/" element={<Login />}></Route>
-        <Route exact path="/test" element={<Test />}></Route>
-        
-        {/* {isLoign && <Route exact path="/" element={<Suspense><LazyloadingAbout /></Suspense>}></Route>} */}
-        {/* <Suspense fallback="loading..............."> */}
-          <Route exact path="about" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingAbout /></Suspense>} />
+        {/* {!isLoign && } */}PostList
+        {/* <Route exact path="/" element={<Navigate to= "/about"/>}></Route> */}
+        {status== 401 && <Route exact path="/" element={ <CheckAuthCompo />}>
+       
+       <Route exact path="/test" element={<Test />}></Route>
+       <Route exact path="/userList" element={<UserList />}></Route>
+       
+       <Route exact path="/postList" element={<PostList />}></Route>
+       
+       
+         <Route exact path="about" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingAbout /></Suspense>} />
 
-          <Route path="product" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingProduct /></Suspense>}>
-            {/* just niche ka jo index route hai wo bhi parent route path pe hi render hoga */}
-            <Route index element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
-            <Route path="list" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
-            <Route path="cart" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingCartItem /></Suspense>} />
-            <Route path="product/:id" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingProductItem /></Suspense>} />
-          </Route>
-          <Route path="order" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingOrder /></Suspense>} />
-        {/* </Suspense> */}
-        <Route
-          path="admin"
-          element={
-            <ProtectedRoutes>
+         <Route path="product" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingProduct /></Suspense>}>
+           {/* just niche ka jo index route hai wo bhi parent route path pe hi render hoga */}
+           <Route index element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
+           <Route path="list" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
+           <Route path="cart" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingCartItem /></Suspense>} />
+           <Route path="product/:id" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingProductItem /></Suspense>} />
+         </Route>
+         <Route path="order" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingOrder /></Suspense>} />
+       
+       <Route
+         path="admin"
+         element={
+           <ProtectedRoutes>
+             <Admin />
+           </ProtectedRoutes>
+         }
+       />
+      
+       <Route path="user/*" element={<Users />} />
+       <Route exact path="/login" element={<Login />} />
+       </Route>}
+       {status== 200 && <><Route exact path="/" element={<Navigate to="/userList"  />} /><Route exact path="/test" element={<Test />}></Route><Route exact path="/userList" element={<UserList />}></Route><Route exact path="/postList" element={<PostList />}></Route><Route exact path="about" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingAbout /></Suspense>} /><Route path="product" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProduct /></Suspense>}>
+
+          <Route index element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
+          <Route path="list" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
+          <Route path="cart" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingCartItem /></Suspense>} />
+          <Route path="product/:id" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProductItem /></Suspense>} />
+        </Route><Route path="order" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingOrder /></Suspense>} /><Route
+            path="admin"
+            element={<ProtectedRoutes>
               <Admin />
-            </ProtectedRoutes>
-          }
-        />
-        {/* <Route path="login" element={<Login />} /> */}
-        <Route path="user/*" element={<Users />} />
+            </ProtectedRoutes>} /><Route path="user/*" element={<Users />} /><Route exact path="/login" element={<Login />} /></>
+      //  </Route>
+      }
+       
+        
         <Route path="*" element={<PageNotFound />} />
+        
       </Routes>
     </div>
   );
