@@ -34,7 +34,7 @@ import Header from "./header";
 import About from "./about";
 import Admin from "./admin";
 import Product from "./product";
-import Order from "./order";
+
 import Login from "./login";
 import ProtectedRoutes from "./protectedRoute";
 import ProductList from "./productList";
@@ -47,10 +47,16 @@ import PostList from "./postList";
 import MinMaxHeight from './minMaxHeight';
 import Test from "./test1";
 import CheckAuthCompo from "./checkAuth";
+import axios from 'axios';
+import Order from "./order";
+import GridLayout from "./gridLayout/gridLayout";
+import FlexLayout from "./flexLayout/flexLayout";
+import MaterialUiGridLayout from "./materialUiGridLayout";
+
 //dynamic import
 const LazyloadingAbout = React.lazy(() => import("./about"));
 const LazyloadingProduct = React.lazy(() => import("./product"));
-const LazyloadingOrder = React.lazy(() => import("./order"));
+// const LazyloadingOrder = React.lazy(() => import("./order"));
 const LazyloadingProductList = React.lazy(() => import("./productList"));
 const LazyloadingProductItem = React.lazy(() => import("./productItem"));
 const LazyloadingCartItem = React.lazy(() => import("./cartItem"));
@@ -66,7 +72,21 @@ const App = () => {
   const { status,posts,isLoading, error } = useSelector((state) => state.posts);
   const navigate = useNavigate();
   const location = useLocation();
+  const [iscalled,setIscalled]=useState(false);
  
+
+
+
+  useEffect(()=>{
+    fetchProduct()
+setIscalled(true);
+  },[])
+
+  const fetchProduct=async ()=>{
+    const res=await axios.get("https://dummyjson.com/products");
+  }
+
+  console.log('iscalled in app',iscalled)
   // useEffect(() => {
   //   // const checkStatus = async () => {
   //     try {
@@ -125,40 +145,33 @@ const App = () => {
       <div style={{}}>{isLoign && <Header />}</div>
 
       <Routes>
-        {/* {!isLoign && } */}PostList
+        {/* {!isLoign && } */}
         {/* <Route exact path="/" element={<Navigate to= "/about"/>}></Route> */}
-        {status== 401 && <Route exact path="/" element={ <CheckAuthCompo />}>
+        {/* {iscalled &&  */}
        
-       <Route exact path="/test" element={<Test />}></Route>
-       <Route exact path="/userList" element={<UserList />}></Route>
-       
-       <Route exact path="/postList" element={<PostList />}></Route>
-       
-       
-         <Route exact path="about" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingAbout /></Suspense>} />
-
-         <Route path="product" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingProduct /></Suspense>}>
-           {/* just niche ka jo index route hai wo bhi parent route path pe hi render hoga */}
-           <Route index element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
-           <Route path="list" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
-           <Route path="cart" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingCartItem /></Suspense>} />
-           <Route path="product/:id" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingProductItem /></Suspense>} />
-         </Route>
-         <Route path="order" element={<Suspense fallback={<div style={{color:'red'}}>Loading....</div>}><LazyloadingOrder /></Suspense>} />
-       
-       <Route
-         path="admin"
-         element={
-           <ProtectedRoutes>
-             <Admin />
-           </ProtectedRoutes>
-         }
-       />
+       <><Route exact path="/" element={<Test />}></Route><Route exact path="/postList" element={<PostList />}></Route><Route exact path="about" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingAbout /></Suspense>} /><Route path="product" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProduct /></Suspense>}>
       
-       <Route path="user/*" element={<Users />} />
-       <Route exact path="/login" element={<Login />} />
-       </Route>}
-       {status== 200 && <><Route exact path="/" element={<Navigate to="/userList"  />} /><Route exact path="/test" element={<Test />}></Route><Route exact path="/userList" element={<UserList />}></Route><Route exact path="/postList" element={<PostList />}></Route><Route exact path="about" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingAbout /></Suspense>} /><Route path="product" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProduct /></Suspense>}>
+            {/* just niche ka jo index route hai wo bhi parent route path pe hi render hoga */}
+            <Route index element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
+            <Route path="userList" element={<UserList iscalled={iscalled} />} />
+            <Route path="cart" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingCartItem /></Suspense>} />
+            <Route path="product/:id" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProductItem /></Suspense>} />
+          </Route><Route path="order" element={<Order />} />
+          <Route  path="/gridLayout" element={<GridLayout />}> </Route>
+       <Route  path="/flexLayout" element={<FlexLayout />}> </Route>
+       <Route  path="/materialUiGridLayout" element={<MaterialUiGridLayout />}> </Route>
+          {/* <Route
+              path="admin"
+              element={<ProtectedRoutes>
+                <Admin />
+              </ProtectedRoutes>} /><Route exact path="/login" element={<Login />} /> */}
+              </>
+        {/* } */}
+       {/* {status== 200 && <><Route exact path="/" element={<Navigate to="/userList"  />} />
+       <Route exact path="/test" element={<Test />}>
+       </Route><Route exact path="/userList" element={<UserList />}></Route>
+       <Route exact path="/postList" element={<PostList />}></Route>
+       <Route exact path="about" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingAbout /></Suspense>} /><Route path="product" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProduct /></Suspense>}>
 
           <Route index element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
           <Route path="list" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
@@ -170,7 +183,7 @@ const App = () => {
               <Admin />
             </ProtectedRoutes>} /><Route path="user/*" element={<Users />} /><Route exact path="/login" element={<Login />} /></>
       //  </Route>
-      }
+      } */}
        
         
         <Route path="*" element={<PageNotFound />} />

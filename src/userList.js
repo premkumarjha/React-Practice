@@ -8,17 +8,18 @@ import timezone from 'dayjs/plugin/timezone';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import axios from "axios";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const UserList = () => {
+const UserList = ({iscalled=false}) => {
   const dispatch = useDispatch();
 
   // Get the state from the store
   const { users, error } = useSelector((state) => state.user);
   const { posts, isLoading, message } = useSelector((state) => state.posts);
-
+ 
   const [value, setValue] = useState(dayjs().utc()); // Store date in UTC
   const [currentTz, setCurrentTz] = useState('UTC');  // Track the current timezone
 
@@ -28,9 +29,21 @@ const UserList = () => {
     // Convert the current value to the new timezone and update the state
     //setValue((prevValue) => dayjs(prevValue).tz(tz, true)); // 'true' keeps the time as is (no offset applied)
   };
+  console.log('iscalled=>',iscalled)
 useEffect(()=>{
   setValue((prevValue) => dayjs(prevValue).tz(currentTz, true));
-},[currentTz])
+},[currentTz]);
+
+
+          
+  useEffect(()=>{
+ fetchUser()
+
+  },[iscalled])
+
+  const fetchUser=async ()=>{
+    const res=await axios.get("https://jsonplaceholder.typicode.com/users");
+  }
   return (
     <div>
       <h2>User List</h2>

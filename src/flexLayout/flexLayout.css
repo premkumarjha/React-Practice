@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* max-width: 800px; */
+  margin: auto;
+}
+
+/* Header */
+.header {
+  background: #50c5e6;
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+}
+
+/* Hero & Main Content */
+.content {
+  display: flex;
+  gap: 10px;
+}
+
+.hero {
+  flex: 1;
+  background: #d1c4e9;
+  padding: 20px;
+  text-align: center;
+}
+
+.main1 {
+  flex: 1;
+  background: #fbc02d;
+  padding: 20px;
+  text-align: center;
+}
+.main2 {
+  flex: 1;
+  background: #fbc02d;
+  padding: 20px;
+  text-align: center;
+}
+/* Sidebar */
+.sidebar {
+  background: #8bc34a;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Extra Content */
+.extra {
+  background: #9e9e9e;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Related Section */
+.related {
+  display: flex;
+  gap: 10px;
+}
+
+.related-images {
+  flex: 2;
+  background: #4caf50;
+  padding: 20px;
+  text-align: center;
+}
+
+.related-posts {
+  flex: 1;
+  background: #f8bbd0;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Footer */
+.footer {
+  background: #ff9800;
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+}

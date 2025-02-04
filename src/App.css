@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -69,3 +75,59 @@
     color:red;
   }
 } */
+
+.container{
+  display: grid;
+margin: 0px;
+height:100vh;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows: repeat(3, 100px);
+grid-gap: 5px;
+  justify-content: center;
+  align-content: center;
+  
+ 
+  grid-auto-rows:100px;
+ 
+          
+}
+.firstclass{
+  background-color: aquamarine;
+grid-column: 1/4;
+  
+}
+.secondclass{
+  background-color: red;
+grid-column: 1/4;
+ 
+}
+.thirdclass{
+background-color: blue;
+grid-row: 3/5;
+
+}
+.fourthclass{
+  background-color: rebeccapurple;
+  grid-column: 2/4;
+}
+.fifthclass{
+  background-color: chartreuse;
+  grid-column: 2/4;
+}
+.sixthclass{
+  background-color: antiquewhite;
+  grid-column: 1/4;
+}
+.seventhclass{
+background-color:palevioletred;
+
+
+}
+.eightclass{
+background-color:powderblue;
+
+}
+.nineclass{
+  background-color:teal;
+
+}
