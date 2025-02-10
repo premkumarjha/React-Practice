@@ -1,7 +1,7 @@
 
 import React from 'react';
 import "./flexLayout.css";
-
+import { Link } from "react-router-dom";
 
 
 const FlexLayout=()=>{
@@ -10,7 +10,9 @@ const FlexLayout=()=>{
   return (
     <>
   <div class="container">
-        <div class="header">Header</div>
+        <div class="header">
+          
+        </div>
         <div class="content">
             <div class="hero">Hero</div>
             <div class="main1">Main Content 1</div>

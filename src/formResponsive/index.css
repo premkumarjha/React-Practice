@@ -1,0 +1,73 @@
+.formcontainer{
+    display: flex;
+    margin-bottom: 30px;
+    flex-wrap: wrap; 
+}
+
+.item{
+    flex: 1 1 calc(25% - 30px); /* 4 divs in one row for large screens */
+}
+.main{
+    display: flex;
+    flex-direction: column;
+}
+
+/* 
+
+flex: 50% Does Not Work in CSS
+The flex property does not directly accept percentage values. So, this will not work:
+.box {
+    flex: 50%;   Incorrect - This is not valid 
+}
+.box {
+    flex: 1 1 50%;  ✅ Correct 
+
+Explanation of flex: 1 1 50%:
+
+1 → flex-grow: Allows item to expand if needed.
+1 → flex-shrink: Allows item to shrink if needed.
+50% → flex-basis: Sets the initial width to 50%.
+
+Key Takeaways
+❌ Incorrect	                          ✅ Correct
+flex: 50% (Not valid)	                flex: 1 1 50% (Valid)
+width: 50% (Works but not flexible)	   flex-basis: 50% (Better for Flexbox)
+
+
+ */
+
+ 
+/* Extra Small (Phones) */
+@media (max-width: 575px) {
+    .item {
+        flex: 1 1 100%;
+    }
+}
+
+/* Small Devices (Large Phones) */
+@media (min-width: 576px) {
+    .item {
+        flex: 1 1 100%;
+    }
+}
+
+/* Medium Devices (Tablets) */
+@media (min-width: 768px) {
+    .item {
+        flex: 1 1 50%;    /*agar sirf 50% lokhoge to kaam nahi karega... */
+    }
+}
+
+/* Large Devices (Laptops) */
+@media (min-width: 992px) {
+    .item{
+        flex: 1 1 calc(25% - 30px); /* 4 divs in one row for large screens */
+    }
+}
+
+/* Extra Large Devices (Desktops) */
+@media (min-width: 1200px) {
+    .item{
+        flex: 1 1 calc(25% - 30px); /* 4 divs in one row for large screens */
+    }
+}

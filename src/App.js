@@ -52,7 +52,8 @@ import Order from "./order";
 import GridLayout from "./gridLayout/gridLayout";
 import FlexLayout from "./flexLayout/flexLayout";
 import MaterialUiGridLayout from "./materialUiGridLayout";
-
+import FormResponsive from "./formResponsive/index";
+import ResponsiveMenu from "./menuResponsive/sidebarmenu";
 //dynamic import
 const LazyloadingAbout = React.lazy(() => import("./about"));
 const LazyloadingProduct = React.lazy(() => import("./product"));
@@ -159,7 +160,9 @@ setIscalled(true);
           </Route><Route path="order" element={<Order />} />
           <Route  path="/gridLayout" element={<GridLayout />}> </Route>
        <Route  path="/flexLayout" element={<FlexLayout />}> </Route>
+       <Route  path="/formResponsive" element={<FormResponsive />}> </Route>
        <Route  path="/materialUiGridLayout" element={<MaterialUiGridLayout />}> </Route>
+       <Route  path="/responsiveMenu" element={<ResponsiveMenu />}> </Route>
           {/* <Route
               path="admin"
               element={<ProtectedRoutes>
