@@ -54,6 +54,10 @@ import FlexLayout from "./flexLayout/flexLayout";
 import MaterialUiGridLayout from "./materialUiGridLayout";
 import FormResponsive from "./formResponsive/index";
 import ResponsiveMenu from "./menuResponsive/sidebarmenu";
+import CreditCard from "./creditCard";
+import AutoCompleteComponent from "../src/reactMachineCoding/autocomplete";
+import SecureForm from "../src/reactMachineCoding/SecureForm";
+import TrafficLight from "./reactMachineCoding/trafficLight";
 //dynamic import
 const LazyloadingAbout = React.lazy(() => import("./about"));
 const LazyloadingProduct = React.lazy(() => import("./product"));
@@ -150,7 +154,7 @@ setIscalled(true);
         {/* <Route exact path="/" element={<Navigate to= "/about"/>}></Route> */}
         {/* {iscalled &&  */}
        
-       <><Route exact path="/" element={<Test />}></Route><Route exact path="/postList" element={<PostList />}></Route><Route exact path="about" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingAbout /></Suspense>} /><Route path="product" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProduct /></Suspense>}>
+       <><Route exact path="/" element={<TrafficLight /> }></Route><Route exact path="/postList" element={<PostList />}></Route><Route exact path="about" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingAbout /></Suspense>} /><Route path="product" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProduct /></Suspense>}>
       
             {/* just niche ka jo index route hai wo bhi parent route path pe hi render hoga */}
             <Route index element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
@@ -163,6 +167,9 @@ setIscalled(true);
        <Route  path="/formResponsive" element={<FormResponsive />}> </Route>
        <Route  path="/materialUiGridLayout" element={<MaterialUiGridLayout />}> </Route>
        <Route  path="/responsiveMenu" element={<ResponsiveMenu />}> </Route>
+       <Route  path="/creditCard" element={<CreditCard />}> </Route>
+        <Route  path="/autoComplete" element={<AutoCompleteComponent />}> </Route>
+        <Route  path="/secureForm" element={<SecureForm />}> </Route>
           {/* <Route
               path="admin"
               element={<ProtectedRoutes>

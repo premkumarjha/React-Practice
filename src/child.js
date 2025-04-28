@@ -7,10 +7,10 @@ import {
   TableWraper,
   Input,
 } from "./styledcomponentstyle";
-const Child = () => {
+const Child = (props) => {
   //const dispatch=useDispatch();
   //const { age, ageCounter,onChange,setAge,setTitle,getstatsus,setData,data ,testMethod} = props;
-  //console.log('props',props)
+  console.log('props',props)
   const [name, setName] = useState("");
 
   return (

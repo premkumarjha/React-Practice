@@ -10,12 +10,12 @@ const UsecallbackExample = () => {
   };
 
   const ageCounter = useCallback(() => {
-    setAge(age + 1);
+    setAge(age+1);
   }, [age]);
 
   return (
     <>
-      <Child age={age} ageCounter={ageCounter} setAge={setAge}/>
+      <Child age={age}  setAge={setAge}/>
       <button onClick={() => increaseCounter()}>Increase counter</button>
       {counter}
       <hr />
