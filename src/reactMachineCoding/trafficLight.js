@@ -19,7 +19,6 @@ concepts :-->//ak hi state jo ki jiski value after some interval change ho rahi 
   useEffect(() => {
     const colors = ["red", "yellow", "green"];
     let index = 0;
-
     const interval = setInterval(() => {
 
       if (index < 3) {

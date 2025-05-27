@@ -2,7 +2,7 @@ import React from 'react';
 import HOC from './heigherOrderComponent';
 
 const Blog=(props)=>{
-console.log(props)
+console.log('props IN blog',props)
     return (
         <>
 

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const Hoc = (Wrapedcomponent) => {
   //yaha useState or...to error dega....as i have check for below setData,so i have moved to inside NewModifiedComponent.
   const NewModifiedComponent = (props) => {
-    console.log(props)
+    console.log('props in HOC',props)
     const [data, setData] = useState([
       { firstName: "John", lastName: "Doe", age: 23 },
 
