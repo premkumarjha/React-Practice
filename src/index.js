@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './configStore/store';
+//import store from './configStore/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom'
+import store from "./reactMachineCoding/store";
+
 const StoreContext = React.createContext();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

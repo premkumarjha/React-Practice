@@ -58,6 +58,12 @@ import CreditCard from "./creditCard";
 import AutoCompleteComponent from "../src/reactMachineCoding/autocomplete";
 import SecureForm from "../src/reactMachineCoding/SecureForm";
 import TrafficLight from "./reactMachineCoding/trafficLight";
+import FetchData from "./reactMachineCoding/apiCall";
+import SearchFilter from "./reactMachineCoding/searchFilter";
+import Home from "./reactMachineCoding/home";
+import LoginForm from "./reactMachineCoding/loginForm";
+import Counter from "./reactMachineCoding/counterUsingRedux";
+import Timer from "./reactMachineCoding/timer";
 //dynamic import
 const LazyloadingAbout = React.lazy(() => import("./about"));
 const LazyloadingProduct = React.lazy(() => import("./product"));
@@ -74,7 +80,7 @@ const App = () => {
     fontFamily: "Arial",
   };
   const [isLoign, setIsLogin] = useState(true);
-  const { status,posts,isLoading, error } = useSelector((state) => state.posts);
+  //const { status,posts,isLoading, error } = useSelector((state) => state?.posts);
   const navigate = useNavigate();
   const location = useLocation();
   const [iscalled,setIscalled]=useState(false);
@@ -156,7 +162,7 @@ setIscalled(true);
         Bloglist
        <>
        {/* <Route exact path="/" element={<TrafficLight /> }></Route> */}
-         <Route exact path="/" element={<Bloglist /> }></Route>
+         <Route exact path="/" element={<Timer /> }></Route>
        <Route exact path="/postList" element={<PostList />}>
        </Route>
        <Route exact path="about" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingAbout /></Suspense>} />

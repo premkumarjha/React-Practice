@@ -2,7 +2,16 @@ import React from 'react';
 import HOC from './heigherOrderComponent';
 
 const Blog=(props)=>{
-console.log('props IN blog',props)
+console.log('props IN blog',props);
+const element = <h1>Hello</h1>;
+console.log('element==>',element);
+/*
+{
+  type: "h1",
+  props: { children: "Hello" },
+  ...
+}
+*/
     return (
         <>
 
