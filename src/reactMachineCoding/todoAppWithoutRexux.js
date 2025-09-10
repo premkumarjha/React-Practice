@@ -1,11 +1,11 @@
 import React, { use, useState } from "react";
 import "../App.css";
-import { set } from "react-hook-form";
+
 const TodoAppWithoutRedux = () => {
   const [data, setData] = useState({ userName: "" });
   const [todos, setTodos] = useState([]);
 
-  //But if there should be a state where no item is selected yet, use null or -1.
+ 
   //If the UI should show something immediately → use 0 (developer style) or 1 (user style).
   //If the UI should wait until something happens (e.g., user picks a page, or data loads) → use null.
   //   1. null
