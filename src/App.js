@@ -62,8 +62,12 @@ import FetchData from "./reactMachineCoding/apiCall";
 import SearchFilter from "./reactMachineCoding/searchFilter";
 import Home from "./reactMachineCoding/home";
 import LoginForm from "./reactMachineCoding/loginForm";
-import Counter from "./reactMachineCoding/counterUsingRedux";
+import counterUsingRedux from "./reactMachineCoding/counterUsingRedux";
 import Timer from "./reactMachineCoding/timer";
+import InfiniteScrollList from "./reactMachineCoding/virtulization";
+import AgGridTable from "./reactMachineCoding/agGridTable";
+import Counter from "./reactMachineCoding/counter";
+import TodoAppWithoutRedux from "./reactMachineCoding/todoAppWithoutRexux";
 //dynamic import
 const LazyloadingAbout = React.lazy(() => import("./about"));
 const LazyloadingProduct = React.lazy(() => import("./product"));
@@ -162,7 +166,7 @@ setIscalled(true);
         Bloglist
        <>
        {/* <Route exact path="/" element={<TrafficLight /> }></Route> */}
-         <Route exact path="/" element={<Timer /> }></Route>
+         <Route exact path="/" element={<TodoAppWithoutRedux /> }></Route>
        <Route exact path="/postList" element={<PostList />}>
        </Route>
        <Route exact path="about" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingAbout /></Suspense>} />

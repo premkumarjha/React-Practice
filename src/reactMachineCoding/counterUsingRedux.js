@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increament, decreament } from "./reducer";
-const Counter = () => {
+const counterUsingRedux = () => {
   const dispatch = useDispatch();
   const { counter } = useSelector((state) => state.counter);
 
@@ -30,4 +30,4 @@ const Counter = () => {
   );
 };
 
-export default Counter;
+export default counterUsingRedux;

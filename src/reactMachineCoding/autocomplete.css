@@ -1,13 +1,15 @@
-button {
+/* button {
     display: block;
-   width:300px;
+   width:200;
    height:50px;
     margin-bottom: 10px;
     background-color:transparent;
     border: none;
     border-radius: 5px;;
-}
+     cursor: pointer;
+} */
 
 button:hover {
-    background-color: #f1f1f1;
+    background-color:green;
+     cursor: pointer;
 }

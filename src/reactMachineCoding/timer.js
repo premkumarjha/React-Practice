@@ -16,7 +16,8 @@ const Timer = () => {
     let minutes = Math.floor(totalsec / 60);
     let seconds = totalsec % 60;
     //let format = (num) => (num < 10 ? `0{num}` : num);
-    return `${minutes}:${seconds}`;
+    //return `${minutes}:${seconds}`;
+    return `${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
   };
   const startHandler = () => {
     if (timerRef.current) return; //// prevent multiple intervals
@@ -35,7 +36,7 @@ const Timer = () => {
     //clearInterval(timer);
     clearInterval(timerRef.current);
     timerRef.current = null;
-    setSeconds(0);
+    setSeconds(3600);
   };
   console.log("timerRef.current", timerRef.current);
   const resumeHandler = () => {

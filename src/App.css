@@ -131,3 +131,48 @@ background-color:powderblue;
   background-color:teal;
 
 }
+
+
+/* input {
+  display: block;
+  height: 30px;
+  width: 200px;
+  margin: 10px;
+} */
+
+tr:nth-child(2n) {
+  background-color: brown;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #4caf50;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.step-line {
+  height: 4px;
+  width: 50px;
+  background-color: #ccc;
+}
+
+/* button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4caf50;
+} */
