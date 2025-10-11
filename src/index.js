@@ -6,7 +6,8 @@ import reportWebVitals from './reportWebVitals';
 //import store from './configStore/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom'
-import store from "./reactMachineCoding/store";
+//import store from "./reactMachineCoding/store";//ye counter wale reeucer ka lega Q ki usme store bana wahi hai..
+import store from "../src/configStore/store" //ye todo wale reducer ka lega Q ki usme store bana wahi hai..
 
 const StoreContext = React.createContext();
 const root = ReactDOM.createRoot(document.getElementById('root'));

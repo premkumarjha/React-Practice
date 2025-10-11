@@ -33,3 +33,23 @@ const userSlice = createSlice({
 });
 export const { loginSuccess } = userSlice.actions;
 export default userSlice.reducer;
+
+/* above two lines can be also written  like below */
+
+// const { actions, reducer } = userSlice;
+
+// export const { loginSuccess } = actions;
+// export default reducer;
+
+
+/*
+export const { loginSuccess } = userSlice.actions;
+export default userSlice.reducer;
+
+userSlice.actions → gives you all the action creators (loginSuccess, logout, etc.).
+
+userSlice.reducer → the reducer function you pass to the store.
+
+That’s why you export them separately
+
+*/

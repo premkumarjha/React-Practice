@@ -68,6 +68,12 @@ import InfiniteScrollList from "./reactMachineCoding/virtulization";
 import AgGridTable from "./reactMachineCoding/agGridTable";
 import Counter from "./reactMachineCoding/counter";
 import TodoAppWithoutRedux from "./reactMachineCoding/todoAppWithoutRexux";
+import TodoAppWithRedux from "./reactMachineCoding/todoAppWithRexux";
+import InfiniteScroll from "./reactMachineCoding/infiniteScroll";
+// import { createStore } from "redux";
+// import { Provider } from "react-redux";
+// import rootReducer from "./redux/store";
+// const store = createStore(rootReducer);
 //dynamic import
 const LazyloadingAbout = React.lazy(() => import("./about"));
 const LazyloadingProduct = React.lazy(() => import("./product"));
@@ -166,7 +172,7 @@ setIscalled(true);
         Bloglist
        <>
        {/* <Route exact path="/" element={<TrafficLight /> }></Route> */}
-         <Route exact path="/" element={<TodoAppWithoutRedux /> }></Route>
+         <Route exact path="/" element={<DebounceExample /> }></Route>
        <Route exact path="/postList" element={<PostList />}>
        </Route>
        <Route exact path="about" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingAbout /></Suspense>} />

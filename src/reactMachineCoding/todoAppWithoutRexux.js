@@ -37,7 +37,7 @@ const TodoAppWithoutRedux = () => {
 
   const [editId, setEditId] = useState(null);
   const [editedData, setEditedData] = useState({ userName: "" });
-  let newData = [];
+
   const addDataHandler = () => {
     if (data.userName.length > 0) {
       setTodos([...todos, data]);
