@@ -2,11 +2,35 @@
 
 Technique	      What It Does	                                                                Example Use
 
-Debounce	      Waits until the user stops typing for X ms, then fires.	                       ✅ Ideal for search boxes (fetch only after user stops typing).
+Debounce	      Waits until the user stops typing for X ms, then fires.	                       ✅ Ideal for Search inputs, Form validation while typing,Auto-save when user stops editing,etc
 
-Throttle	      Executes the function at most once every X ms, even if user keeps typing.	     ✅ Ideal for scroll, resize, drag events
+Throttle	      Executes the function at most once every X ms, even if user keeps typing.	     ✅ Ideal for scroll (ex: infinite scroll,etc), resize, Mouse Move Events(mouse move actions,...) 
 
 
+.>"Wait until user stops" → Use Debounce  //Execute the action only after the user stops doing something for a while.
+
+.>"Don't execute too often" → Use Throttle
+
+.>Search/Validation → Debounce
+
+.>Scroll/Resize → Throttle
+
+//=====>which one is better for auto save ===>
+
+Use Case	                                   Best Technique	                    Why
+Auto-save after pause	                         Debounce                     ✅	Save final version only
+Save periodically (like live sync editor)	     Throttle                    ⚙️	Save continuously every X sec
+
+
+****************************************************************************************************************
+Final Rule of Thumb:
+
+👉 If your action should happen after user stops doing something → use Debounce.
+👉 If your action should happen while user is doing something, but at a limited rate → use Throttle.
+⏸️ Wait until user stops doing something	Debounce
+⏩ Keep updating while user is doing something, but limit rate	Throttle
+
+**************************************************************************************************************
 */
 
 
@@ -137,7 +161,6 @@ The golden rule remains: Function executes delay ms after the last input change,
 
   const changeHandler = debounce((e) => fetchUser(e.target.value), 1000);
   
-//(e) => fetchUser(e.target.value), 1000
 
   return (
     <>
