@@ -1,3 +1,16 @@
+/*  
+
+Technique	      What It Does	                                                                Example Use
+
+Debounce	      Waits until the user stops typing for X ms, then fires.	                       ✅ Ideal for search boxes (fetch only after user stops typing).
+
+Throttle	      Executes the function at most once every X ms, even if user keeps typing.	     ✅ Ideal for scroll, resize, drag events
+
+
+*/
+
+
+
 import React, { useState } from "react";
 
 const DebounceExample = () => {
@@ -57,7 +70,7 @@ User types: "H" → "e" → navigates away after 500ms
    ├─ User navigates away at 500ms (component unmounts)
    ╰─ Timer still running! Will try to execute at 1500ms but may cause errors
 
-   
+
 Important Fix for Scenario 5 (Navigation Issue):
 javascript
 // In React component with cleanup
