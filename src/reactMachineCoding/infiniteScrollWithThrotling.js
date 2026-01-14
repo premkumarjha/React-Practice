@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const InfiniteScroll = () => {
+const InfiniteScrollWithThrotling = () => {
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -56,6 +56,28 @@ _page and _limit , its not page and limit, there is underscore before both.
     fetchPosts();
   }, [page]);
 
+  /*   How throttle logic works:
+
+ lastCall stores the timestamp of the last time the function was called
+
+ When the throttled function is called, it checks: current time - last call time < delay?
+
+ If YES → return immediately (do nothing)
+
+ If NO → update lastCall to current time and execute the function
+
+ */
+  const throttle = (func, delay) => {
+    let lastCall = 0;
+    return () => {
+      const now = new Date().getTime();
+      if (now - lastCall < delay) {
+        return; // Too soon, ignore this call
+      }
+      lastCall = now;
+      return func();
+    };
+  };
   const handlescroll = () => {
     const viewportHeight = window.innerHeight;
 
@@ -63,17 +85,27 @@ _page and _limit , its not page and limit, there is underscore before both.
     const scrollPosition = window.scrollY;
 
     // document.body.offsetHeight → total height of the entire body (content area)
-    const totalPageHeight = document.documentElement.scrollHeight ;
+    const totalPageHeight = document.body.offsetHeight;
     if (!loading && viewportHeight + scrollPosition >= totalPageHeight - 100) {
       console.log("Reached bottom!");
       setPage((prev) => prev + 1); //jab bhi bottom tak pohonch jate hai to page increase krdo by 1
       //fetchPosts();
     }
   };
+  // ❌ WRONG - You're not calling the throttled function
+  // const throttledCheckScroll = () => {
+  //   throttle(handlescroll, 300); // This returns a function but doesn't call it
+  // };
 
+  // ✅ CORRECT
+  const throttledCheckScroll = throttle(handlescroll, 3000);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handlescroll);
+  //   return () => window.removeEventListener("scroll", handlescroll);
+  // }, [loading]);
   useEffect(() => {
-    window.addEventListener("scroll", handlescroll);
-    return () => window.removeEventListener("scroll", handlescroll);
+    window.addEventListener("scroll", throttledCheckScroll);
+    return () => window.removeEventListener("scroll", throttledCheckScroll);
   }, [loading]);
   return (
     <>
@@ -102,4 +134,4 @@ _page and _limit , its not page and limit, there is underscore before both.
     </>
   );
 };
-export default InfiniteScroll;
+export default InfiniteScrollWithThrotling;

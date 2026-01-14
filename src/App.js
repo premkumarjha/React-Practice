@@ -12,11 +12,19 @@ import Boxmodal from "./boxmodal";
 import Imagelider from "./slider";
 import Accordion from "./accordion";
 import NestedRoute from "./nestedroutes";
-import { BrowserRouter, Routes, Route, Link,useNavigate, Navigate,useLocation} from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import PositionPractice from "./position";
 import LazyloadingPractice from "./lazyloading";
-import React, { lazy, Suspense, useState ,useEffect} from "react";
+import React, { lazy, Suspense, useState, useEffect } from "react";
 import FordwardRefComponent from "./forwardRef";
 import NavigationPractice from "./navbar";
 import StyledComponent from "./styledcomponent";
@@ -44,10 +52,10 @@ import PageNotFound from "./pageNotFound";
 import Users from "./users";
 import UserList from "./userList";
 import PostList from "./postList";
-import MinMaxHeight from './minMaxHeight';
+import MinMaxHeight from "./minMaxHeight";
 import Test from "./test1";
 import CheckAuthCompo from "./checkAuth";
-import axios from 'axios';
+import axios from "axios";
 import Order from "./order";
 import GridLayout from "./gridLayout/gridLayout";
 import FlexLayout from "./flexLayout/flexLayout";
@@ -70,6 +78,12 @@ import Counter from "./reactMachineCoding/counter";
 import TodoAppWithoutRedux from "./reactMachineCoding/todoAppWithoutRexux";
 import TodoAppWithRedux from "./reactMachineCoding/todoAppWithRexux";
 import InfiniteScroll from "./reactMachineCoding/infiniteScroll";
+import InfiniteScrollWithThrotling from "./reactMachineCoding/infiniteScrollWithThrotling";
+import DivAllign from "./divAllign";
+import MultiSelectDropdown from "./reactMachineCoding/multiSelectDropdown";
+import AutoCompleteInterviewComponent from "./reactMachineCoding/autocomplateInterview"; 
+import Stopwatch from "./reactMachineCoding/stopWatch";
+//redux setup
 // import { createStore } from "redux";
 // import { Provider } from "react-redux";
 // import rootReducer from "./redux/store";
@@ -93,30 +107,25 @@ const App = () => {
   //const { status,posts,isLoading, error } = useSelector((state) => state?.posts);
   const navigate = useNavigate();
   const location = useLocation();
-  const [iscalled,setIscalled]=useState(false);
- 
+  const [iscalled, setIscalled] = useState(false);
 
+  useEffect(() => {
+    fetchProduct();
+    setIscalled(true);
+  }, []);
 
+  const fetchProduct = async () => {
+    const res = await axios.get("https://dummyjson.com/products");
+  };
 
-  useEffect(()=>{
-    fetchProduct()
-setIscalled(true);
-  },[])
-
-  const fetchProduct=async ()=>{
-    const res=await axios.get("https://dummyjson.com/products");
-  }
-
-  console.log('iscalled in app',iscalled)
+  console.log("iscalled in app", iscalled);
   // useEffect(() => {
   //   // const checkStatus = async () => {
   //     try {
-      
 
-        
   //       if (status === 401) {
   //         navigate('/login');  // Navigate to Home page if status is 200
-  //       } 
+  //       }
   //     } catch (error) {
   //       console.error('Error checking status:', error);
   //     }
@@ -132,7 +141,7 @@ setIscalled(true);
   //   if (status === 200) {
   //     return <Navigate to="/profile" replace />;
   //   }
-    // Your logic here, like initializing a feature or fetching data
+  // Your logic here, like initializing a feature or fetching data
   //};
   return (
     <div>
@@ -143,7 +152,7 @@ setIscalled(true);
       {/* <LoderTillPageWidth /> */}
       {/* <UserTable /> */}
       {/* <EventDelegation></EventDelegation> */}
-     
+
       {/* <UsereducerPractice /> */}
       {/* <FormFieldFocus></FormFieldFocus> */}
       {/* <Suspense style={{color:'red'}} fallback={'Loading....'}> */}
@@ -170,36 +179,100 @@ setIscalled(true);
         {/* <Route exact path="/" element={<Navigate to= "/about"/>}></Route> */}
         {/* {iscalled &&  */}
         Bloglist
-       <>
-       {/* <Route exact path="/" element={<TrafficLight /> }></Route> */}
-         <Route exact path="/" element={<DebounceExample /> }></Route>
-       <Route exact path="/postList" element={<PostList />}>
-       </Route>
-       <Route exact path="about" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingAbout /></Suspense>} />
-       <Route path="product" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProduct /></Suspense>}>
-      
+        <>
+          {/* <Route exact path="/" element={<TrafficLight /> }></Route> */}
+          <Route exact path="/" element={<Stopwatch />}></Route>
+          <Route exact path="/postList" element={<PostList />}></Route>
+          <Route
+            exact
+            path="about"
+            element={
+              <Suspense
+                fallback={<div style={{ color: "red" }}>Loading....</div>}
+              >
+                <LazyloadingAbout />
+              </Suspense>
+            }
+          />
+          <Route
+            path="product"
+            element={
+              <Suspense
+                fallback={<div style={{ color: "red" }}>Loading....</div>}
+              >
+                <LazyloadingProduct />
+              </Suspense>
+            }
+          >
             {/* just niche ka jo index route hai wo bhi parent route path pe hi render hoga */}
-            <Route index element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProductList /></Suspense>} />
+            <Route
+              index
+              element={
+                <Suspense
+                  fallback={<div style={{ color: "red" }}>Loading....</div>}
+                >
+                  <LazyloadingProductList />
+                </Suspense>
+              }
+            />
             <Route path="userList" element={<UserList iscalled={iscalled} />} />
-            <Route path="cart" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingCartItem /></Suspense>} />
-            <Route path="product/:id" element={<Suspense fallback={<div style={{ color: 'red' }}>Loading....</div>}><LazyloadingProductItem /></Suspense>} />
-          </Route><Route path="order" element={<Order />} />
-          <Route  path="/gridLayout" element={<GridLayout />}> </Route>
-       <Route  path="/flexLayout" element={<FlexLayout />}> </Route>
-       <Route  path="/formResponsive" element={<FormResponsive />}> </Route>
-       <Route  path="/materialUiGridLayout" element={<MaterialUiGridLayout />}> </Route>
-       <Route  path="/responsiveMenu" element={<ResponsiveMenu />}> </Route>
-       <Route  path="/creditCard" element={<CreditCard />}> </Route>
-        <Route  path="/autoComplete" element={<AutoCompleteComponent />}> </Route>
-        <Route  path="/secureForm" element={<SecureForm />}> </Route>
+            <Route
+              path="cart"
+              element={
+                <Suspense
+                  fallback={<div style={{ color: "red" }}>Loading....</div>}
+                >
+                  <LazyloadingCartItem />
+                </Suspense>
+              }
+            />
+            <Route
+              path="product/:id"
+              element={
+                <Suspense
+                  fallback={<div style={{ color: "red" }}>Loading....</div>}
+                >
+                  <LazyloadingProductItem />
+                </Suspense>
+              }
+            />
+          </Route>
+          <Route path="order" element={<Order />} />
+          <Route path="/gridLayout" element={<GridLayout />}>
+            {" "}
+          </Route>
+          <Route path="/flexLayout" element={<FlexLayout />}>
+            {" "}
+          </Route>
+          <Route path="/formResponsive" element={<FormResponsive />}>
+            {" "}
+          </Route>
+          <Route
+            path="/materialUiGridLayout"
+            element={<MaterialUiGridLayout />}
+          >
+            {" "}
+          </Route>
+          <Route path="/responsiveMenu" element={<ResponsiveMenu />}>
+            {" "}
+          </Route>
+          <Route path="/creditCard" element={<CreditCard />}>
+            {" "}
+          </Route>
+          <Route path="/autoComplete" element={<AutoCompleteComponent />}>
+            {" "}
+          </Route>
+          <Route path="/secureForm" element={<SecureForm />}>
+            {" "}
+          </Route>
           {/* <Route
               path="admin"
               element={<ProtectedRoutes>
                 <Admin />
               </ProtectedRoutes>} /><Route exact path="/login" element={<Login />} /> */}
-              </>
+        </>
         {/* } */}
-       {/* {status== 200 && <><Route exact path="/" element={<Navigate to="/userList"  />} />
+        {/* {status== 200 && <><Route exact path="/" element={<Navigate to="/userList"  />} />
        <Route exact path="/test" element={<Test />}>
        </Route><Route exact path="/userList" element={<UserList />}></Route>
        <Route exact path="/postList" element={<PostList />}></Route>
@@ -216,14 +289,10 @@ setIscalled(true);
             </ProtectedRoutes>} /><Route path="user/*" element={<Users />} /><Route exact path="/login" element={<Login />} /></>
       //  </Route>
       } */}
-       
-        
         <Route path="*" element={<PageNotFound />} />
-        
       </Routes>
     </div>
   );
 };
 
 export default App;
-

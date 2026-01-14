@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 
 const TrafficLight = () => {
-  
+
   const [color, setColor] = useState("red");
+  
+const durations = {
+    'red': 5000,
+    'yellow': 2000,
+    'green': 4000,
+  };
+
 
 /*
 
@@ -15,7 +22,7 @@ concepts :-->//ak hi state jo ki jiski value after some interval change ho rahi 
 //vvvvviiimmpp==>similar problems like this =>Countdown Timer / Stopwatch, Image Carousel / Slideshow,progress bar that fills gradually,Simulate Pomodoro timer (25 min work / 5 min break cycle),LED light toggle: blink on/off every 1 second, Quiz App with Timed Questions, Typing Animation, Digital Clock, Alert Notification Rotator, Step-wise Form Animation, etc
 
 */
-  
+
   useEffect(() => {
     const colors = ["red", "yellow", "green"];
     let index = 0;
