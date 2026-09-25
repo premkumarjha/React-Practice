@@ -81,8 +81,10 @@ import InfiniteScroll from "./reactMachineCoding/infiniteScroll";
 import InfiniteScrollWithThrotling from "./reactMachineCoding/infiniteScrollWithThrotling";
 import DivAllign from "./divAllign";
 import MultiSelectDropdown from "./reactMachineCoding/multiSelectDropdown";
-import AutoCompleteInterviewComponent from "./reactMachineCoding/autocomplateInterview"; 
+import AutoCompleteInterviewComponent from "./reactMachineCoding/autocomplateInterview";
 import Stopwatch from "./reactMachineCoding/stopWatch";
+import DialogComponent from "./modal";
+import TicketBookingComponent from "./ticketBooking";
 //redux setup
 // import { createStore } from "redux";
 // import { Provider } from "react-redux";
@@ -104,6 +106,7 @@ const App = () => {
     fontFamily: "Arial",
   };
   const [isLoign, setIsLogin] = useState(true);
+  const [isShow, setIsShow] = useState(true);
   //const { status,posts,isLoading, error } = useSelector((state) => state?.posts);
   const navigate = useNavigate();
   const location = useLocation();
@@ -181,7 +184,12 @@ const App = () => {
         Bloglist
         <>
           {/* <Route exact path="/" element={<TrafficLight /> }></Route> */}
-          <Route exact path="/" element={<Stopwatch />}></Route>
+          <Route
+            exact
+            path="/"
+            //element={isShow ? <DialogComponent /> : <PostList />}
+            element={<TicketBookingComponent/>}
+          ></Route>
           <Route exact path="/postList" element={<PostList />}></Route>
           <Route
             exact
