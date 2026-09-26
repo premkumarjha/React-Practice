@@ -6,8 +6,8 @@ const TicketBookingComponent = () => {
   const rows = ["A", "B", "C", "D", "E", "F", "G", "H"];
   const seats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const [selectedSeats, setSelectedSeats] = useState([]);
-  const [selectedRow,setSelectedRow]=useState(null);
- let totalTicketPrice=0;
+  const [selectedRow, setSelectedRow] = useState(null);
+  let totalTicketPrice = 0;
   const seatColors = {
     A: "gray",
     B: "gray",
@@ -30,12 +30,12 @@ const TicketBookingComponent = () => {
     H: 300,
   };
   console.log("selectedSeats", selectedSeats);
-  const cost=selectedSeats.forEach(v=>{
-   
-    totalTicketPrice+=price[v.split('')[0]]
+  console.log("ref is", ref?.current?.style?.backgroundColor);
+  const cost = selectedSeats.forEach((v) => {
+    totalTicketPrice += price[v.split("")[0]];
     //console.log(price[v.split('')[0]])
-    console.log(totalTicketPrice)
-  })
+    console.log(totalTicketPrice);
+  });
   const bookSeatHandler = () => {};
 
   return (
@@ -58,14 +58,15 @@ const TicketBookingComponent = () => {
             padding: "20px",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-around",
+           justifyContent: "space-around",
+          //rowGap:'5px'
           }}
         >
           {/* //rows */}
           {rows.map((row) => (
             <div
               key={row}
-              style={{ display: "flex", justifyContent: "space-around" }}
+              style={{ display: "flex", columnGap:'10px'}}
             >
               <div
                 style={{
@@ -84,15 +85,22 @@ const TicketBookingComponent = () => {
                   style={{
                     height: "30px",
                     width: "30px",
-                    backgroundColor: seatColors[row],
+                    backgroundColor: selectedSeats.includes(`${row} ${seat}`)
+                      ? "green"
+                      : seatColors[row],
+
                     borderTopLeftRadius: "25%",
                     borderTopRightRadius: "25%",
                     padding: "7px",
                     textAlign: "center",
                   }}
-                  onClick={() =>
-                    setSelectedSeats([...selectedSeats, `${row} ${seat}`])
-                  }
+                  onClick={() => {
+                    setSelectedSeats([...selectedSeats, `${row} ${seat}`]);
+                    // console.log(
+                    //   "selectedSeats.includes(`${row} ${seat}`)",
+                    //   selectedSeats.includes(`${row} ${seat}`),
+                    // );
+                  }}
                 >
                   {seat}
                 </button>
@@ -211,94 +219,95 @@ const TicketBookingComponent = () => {
           style={{
             flex: 40,
             display: "flex",
-            justifyContent: "space-around",
-           flexDirection: "column",
-          // margin:'40px'
+            justifyContent: 'center',
+            flexDirection: "column",
+            // margin:'40px'
+            rowGap: '50px'
           }}
         >
-          <div style={{display:'flex'}}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "start",
-              alignItems: "center",
-            }}
-          >
+          <div style={{ display: "flex" ,gap: "15px"}}>
             <div
               style={{
-                height: "30px",
-                width: "30px",
-                backgroundColor: "gray",
-                borderTopLeftRadius: "25%",
-                borderTopRightRadius: "25%",
-                padding: "7px",
-                textAlign: "center",
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "center",
               }}
-            ></div>
-            <div style={{ textAlign: "center" }}>Regular(150)</div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "start",
-              alignItems: "center",
-            }}
-          >
+            >
+              <div
+                style={{
+                  height: "30px",
+                  width: "30px",
+                  backgroundColor: "gray",
+                  borderTopLeftRadius: "25%",
+                  borderTopRightRadius: "25%",
+                  padding: "7px",
+                  textAlign: "center",
+                }}
+              ></div>
+              <div style={{ textAlign: "center" }}>Regular(150)</div>
+            </div>
             <div
               style={{
-                height: "30px",
-                width: "30px",
-                backgroundColor: "#27CCF5",
-                borderTopLeftRadius: "25%",
-                borderTopRightRadius: "25%",
-                padding: "7px",
-                textAlign: "center",
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "center",
               }}
-            ></div>
-            <div style={{ textAlign: "center" }}>Premium(200)</div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "start",
-              alignItems: "center",
-            }}
-          >
+            >
+              <div
+                style={{
+                  height: "30px",
+                  width: "30px",
+                  backgroundColor: "#27CCF5",
+                  borderTopLeftRadius: "25%",
+                  borderTopRightRadius: "25%",
+                  padding: "7px",
+                  textAlign: "center",
+                }}
+              ></div>
+              <div style={{ textAlign: "center" }}>Premium(200)</div>
+            </div>
             <div
               style={{
-                height: "30px",
-                width: "30px",
-                backgroundColor: "yellow",
-                borderTopLeftRadius: "25%",
-                borderTopRightRadius: "25%",
-                padding: "7px",
-                textAlign: "center",
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "center",
               }}
-            ></div>
-            <div style={{ textAlign: "center" }}>VIP(300)</div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "start",
-              alignItems: "center",
-            }}
-          >
+            >
+              <div
+                style={{
+                  height: "30px",
+                  width: "30px",
+                  backgroundColor: "yellow",
+                  borderTopLeftRadius: "25%",
+                  borderTopRightRadius: "25%",
+                  padding: "7px",
+                  textAlign: "center",
+                }}
+              ></div>
+              <div style={{ textAlign: "center" }}>VIP(300)</div>
+            </div>
             <div
               style={{
-                height: "30px",
-                width: "30px",
-                backgroundColor: "green",
-                borderTopLeftRadius: "25%",
-                borderTopRightRadius: "25%",
-                padding: "7px",
-                textAlign: "center",
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "center",
               }}
-            ></div>
-            <div style={{ textAlign: "center" }}>Booked</div>
+            >
+              <div
+                style={{
+                  height: "30px",
+                  width: "30px",
+                  backgroundColor: "green",
+                  borderTopLeftRadius: "25%",
+                  borderTopRightRadius: "25%",
+                  padding: "7px",
+                  textAlign: "center",
+                }}
+              ></div>
+              <div style={{ textAlign: "center" }}>Booked</div>
+            </div>
           </div>
-          </div>
-           <div style={{display:'flex',flexDirection:'column'}}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <p>No of seats Booked:{selectedSeats.length}</p>
             <p>Booked Seats:{[...selectedSeats]}</p>
             <p>Total Price:{totalTicketPrice}</p>
@@ -310,9 +319,7 @@ const TicketBookingComponent = () => {
               {`Book ${selectedSeats.length} seat - ${totalTicketPrice}`}
             </button>
           </div>
-
         </div>
-       
       </div>
     </>
   );
